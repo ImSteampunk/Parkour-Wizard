@@ -1,4 +1,5 @@
 #class_name Player_Character
+# classname is a bit worthless atm, it's a consideration for if I want to do multiplayer some day
 extends CharacterBody3D
 
 @export_group("Camera")
