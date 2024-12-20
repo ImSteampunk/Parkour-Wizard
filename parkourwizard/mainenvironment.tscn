@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://df5gbi5gspxtp"]
+
+[ext_resource type="Script" path="res://mainenvironment.gd" id="1_pcp77"]
+[ext_resource type="PackedScene" uid="uid://yd1vh6t0oufk" path="res://player.tscn" id="2_n72kf"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_30dhc"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_x4oha"]
+sky_material = SubResource("ProceduralSkyMaterial_30dhc")
+
+[sub_resource type="Environment" id="Environment_awiij"]
+background_mode = 2
+sky = SubResource("Sky_x4oha")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_wtapd"]
+size = Vector3(20, 1, 20)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_wo5dd"]
+data = PackedVector3Array(-10, 0.5, 10, 10, 0.5, 10, -10, -0.5, 10, 10, 0.5, 10, 10, -0.5, 10, -10, -0.5, 10, 10, 0.5, -10, -10, 0.5, -10, 10, -0.5, -10, -10, 0.5, -10, -10, -0.5, -10, 10, -0.5, -10, 10, 0.5, 10, 10, 0.5, -10, 10, -0.5, 10, 10, 0.5, -10, 10, -0.5, -10, 10, -0.5, 10, -10, 0.5, -10, -10, 0.5, 10, -10, -0.5, -10, -10, 0.5, 10, -10, -0.5, 10, -10, -0.5, -10, 10, 0.5, 10, -10, 0.5, 10, 10, 0.5, -10, -10, 0.5, 10, -10, 0.5, -10, 10, 0.5, -10, -10, -0.5, 10, 10, -0.5, 10, -10, -0.5, -10, 10, -0.5, 10, 10, -0.5, -10, -10, -0.5, -10)
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_pcp77")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_awiij")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WorldEnvironment"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("BoxMesh_wtapd")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="WorldEnvironment/MeshInstance3D"]
+collision_layer = 255
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WorldEnvironment/MeshInstance3D/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_wo5dd")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, -5.3642, 7.65228, 10.0784)
+shadow_enabled = true
+
+[node name="Player" parent="." instance=ExtResource("2_n72kf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -4)
