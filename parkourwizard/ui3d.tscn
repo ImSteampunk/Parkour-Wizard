@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://dpvbc8bqtqfqw"]
+
+[ext_resource type="PackedScene" uid="uid://b0sv37xfpp78n" path="res://ui.tscn" id="1_6y8lx"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_00yw2"]
+viewport_path = NodePath("Sprite3D/SubViewport")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Sprite3D" type="Sprite3D" parent="."]
+texture = SubResource("ViewportTexture_00yw2")
+
+[node name="SubViewport" type="SubViewport" parent="Sprite3D"]
+size = Vector2i(400, 250)
+
+[node name="Control" parent="Sprite3D/SubViewport" instance=ExtResource("1_6y8lx")]

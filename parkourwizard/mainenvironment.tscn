@@ -1,7 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://df5gbi5gspxtp"]
+[gd_scene load_steps=15 format=3 uid="uid://df5gbi5gspxtp"]
 
 [ext_resource type="Script" path="res://mainenvironment.gd" id="1_pcp77"]
+[ext_resource type="PackedScene" uid="uid://bn4qwakhkqbct" path="res://wizardtower.tscn" id="2_me8h0"]
 [ext_resource type="PackedScene" uid="uid://yd1vh6t0oufk" path="res://player.tscn" id="2_n72kf"]
+[ext_resource type="PackedScene" uid="uid://dpvbc8bqtqfqw" path="res://ui3d.tscn" id="3_0ecbn"]
+[ext_resource type="PackedScene" uid="uid://be051hfhoqw1" path="res://wall.tscn" id="3_agvdv"]
+[ext_resource type="PackedScene" uid="uid://bhoi4ife53g07" path="res://cylinder.tscn" id="4_fqqhr"]
+[ext_resource type="PackedScene" uid="uid://beh5ic6o7q8hs" path="res://platform.tscn" id="6_igm5a"]
+[ext_resource type="PackedScene" uid="uid://bdj8lk7eabue6" path="res://slope.tscn" id="7_yf30n"]
+[ext_resource type="PackedScene" uid="uid://drodoe1gaeows" path="res://orb.tscn" id="9_fdfir"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_30dhc"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -17,10 +24,10 @@ tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="BoxMesh" id="BoxMesh_wtapd"]
-size = Vector3(20, 1, 20)
+size = Vector3(300, 1, 300)
 
-[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_wo5dd"]
-data = PackedVector3Array(-10, 0.5, 10, 10, 0.5, 10, -10, -0.5, 10, 10, 0.5, 10, 10, -0.5, 10, -10, -0.5, 10, 10, 0.5, -10, -10, 0.5, -10, 10, -0.5, -10, -10, 0.5, -10, -10, -0.5, -10, 10, -0.5, -10, 10, 0.5, 10, 10, 0.5, -10, 10, -0.5, 10, 10, 0.5, -10, 10, -0.5, -10, 10, -0.5, 10, -10, 0.5, -10, -10, 0.5, 10, -10, -0.5, -10, -10, 0.5, 10, -10, -0.5, 10, -10, -0.5, -10, 10, 0.5, 10, -10, 0.5, 10, 10, 0.5, -10, -10, 0.5, 10, -10, 0.5, -10, 10, 0.5, -10, -10, -0.5, 10, 10, -0.5, 10, -10, -0.5, -10, 10, -0.5, 10, 10, -0.5, -10, -10, -0.5, -10)
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_wintt"]
+data = PackedVector3Array(-150, 0.5, 150, 150, 0.5, 150, -150, -0.5, 150, 150, 0.5, 150, 150, -0.5, 150, -150, -0.5, 150, 150, 0.5, -150, -150, 0.5, -150, 150, -0.5, -150, -150, 0.5, -150, -150, -0.5, -150, 150, -0.5, -150, 150, 0.5, 150, 150, 0.5, -150, 150, -0.5, 150, 150, 0.5, -150, 150, -0.5, -150, 150, -0.5, 150, -150, 0.5, -150, -150, 0.5, 150, -150, -0.5, -150, -150, 0.5, 150, -150, -0.5, 150, -150, -0.5, -150, 150, 0.5, 150, -150, 0.5, 150, 150, 0.5, -150, -150, 0.5, 150, -150, 0.5, -150, 150, 0.5, -150, -150, -0.5, 150, 150, -0.5, 150, -150, -0.5, -150, 150, -0.5, 150, 150, -0.5, -150, -150, -0.5, -150)
 
 [node name="Main" type="Node3D"]
 script = ExtResource("1_pcp77")
@@ -36,7 +43,13 @@ mesh = SubResource("BoxMesh_wtapd")
 collision_layer = 255
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="WorldEnvironment/MeshInstance3D/StaticBody3D"]
-shape = SubResource("ConcavePolygonShape3D_wo5dd")
+shape = SubResource("ConcavePolygonShape3D_wintt")
+
+[node name="Node3D" parent="WorldEnvironment/MeshInstance3D" instance=ExtResource("2_me8h0")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 3, 0)
+
+[node name="Node3D2" parent="WorldEnvironment/MeshInstance3D" instance=ExtResource("3_0ecbn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -8)
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, -5.3642, 7.65228, 10.0784)
@@ -44,3 +57,33 @@ shadow_enabled = true
 
 [node name="Player" parent="." instance=ExtResource("2_n72kf")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, -4)
+
+[node name="Wall" parent="." instance=ExtResource("3_agvdv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 42, 51, 77)
+
+[node name="Cylinder" parent="." instance=ExtResource("4_fqqhr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 4, 46)
+
+[node name="Platform" parent="." instance=ExtResource("6_igm5a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 14, 0)
+
+[node name="Platform2" parent="." instance=ExtResource("6_igm5a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -66, 19, 0)
+
+[node name="Platform3" parent="." instance=ExtResource("6_igm5a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -88, 22, -35)
+
+[node name="Platform4" parent="." instance=ExtResource("6_igm5a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -46, 34, -52)
+
+[node name="Platform5" parent="." instance=ExtResource("6_igm5a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -84, 45, -80)
+
+[node name="platform midheight" parent="." instance=ExtResource("6_igm5a")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 3, -23)
+
+[node name="slope" parent="." instance=ExtResource("7_yf30n")]
+transform = Transform3D(0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0, 1, -28, 5, 0)
+
+[node name="orb" parent="." instance=ExtResource("9_fdfir")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 6, -59)
