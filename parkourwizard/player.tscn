@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://yd1vh6t0oufk"]
+[gd_scene load_steps=9 format=3 uid="uid://yd1vh6t0oufk"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_yugt1"]
+[ext_resource type="PackedScene" uid="uid://bpw28csj200dg" path="res://particletest.tscn" id="2_exc2g"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_gjyhu"]
 
@@ -47,3 +48,7 @@ mesh = SubResource("PrismMesh_7wkop")
 [node name="PlayerSlide" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.5, 0, 0, 0, 1, 0, -0.504916, 0)
 mesh = SubResource("CapsuleMesh_ital6")
+
+[node name="Node3D" parent="." instance=ExtResource("2_exc2g")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.611853, -4.14629)
+visible = false

@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://dn1jj23gos1mc"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_mypb6"]
+color = Color(0.301961, 0.231373, 0.996078, 1)
+
+[sub_resource type="TorusMesh" id="TorusMesh_iic5k"]
+rings = 8
+ring_segments = 4
+
+[node name="Node3D" type="Node3D"]
+
+[node name="GPUParticles3D2" type="GPUParticles3D" parent="."]
+amount = 12
+lifetime = 3.0
+interpolate = false
+process_material = SubResource("ParticleProcessMaterial_mypb6")
+draw_pass_1 = SubResource("TorusMesh_iic5k")

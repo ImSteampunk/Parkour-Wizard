@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://df5gbi5gspxtp"]
+[gd_scene load_steps=17 format=3 uid="uid://df5gbi5gspxtp"]
 
 [ext_resource type="Script" path="res://mainenvironment.gd" id="1_pcp77"]
 [ext_resource type="PackedScene" uid="uid://bn4qwakhkqbct" path="res://wizardtower.tscn" id="2_me8h0"]
@@ -6,9 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://dpvbc8bqtqfqw" path="res://ui3d.tscn" id="3_0ecbn"]
 [ext_resource type="PackedScene" uid="uid://be051hfhoqw1" path="res://wall.tscn" id="3_agvdv"]
 [ext_resource type="PackedScene" uid="uid://bhoi4ife53g07" path="res://cylinder.tscn" id="4_fqqhr"]
+[ext_resource type="PackedScene" uid="uid://bpw28csj200dg" path="res://particletest.tscn" id="4_mxr1d"]
 [ext_resource type="PackedScene" uid="uid://beh5ic6o7q8hs" path="res://platform.tscn" id="6_igm5a"]
 [ext_resource type="PackedScene" uid="uid://bdj8lk7eabue6" path="res://slope.tscn" id="7_yf30n"]
 [ext_resource type="PackedScene" uid="uid://drodoe1gaeows" path="res://orb.tscn" id="9_fdfir"]
+[ext_resource type="PackedScene" uid="uid://dn1jj23gos1mc" path="res://particletest2.tscn" id="11_rv7mk"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_30dhc"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -51,6 +53,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 30, 3, 0)
 [node name="Node3D2" parent="WorldEnvironment/MeshInstance3D" instance=ExtResource("3_0ecbn")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -8)
 
+[node name="Node3D3" parent="WorldEnvironment/MeshInstance3D" instance=ExtResource("4_mxr1d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 9, -4)
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866025, -0.433013, 0.25, 0, 0.5, 0.866025, -0.5, 0.75, -0.433013, -5.3642, 7.65228, 10.0784)
 shadow_enabled = true
@@ -87,3 +92,6 @@ transform = Transform3D(0.5, 0.866025, 0, -0.866025, 0.5, 0, 0, 0, 1, -28, 5, 0)
 
 [node name="orb" parent="." instance=ExtResource("9_fdfir")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 6, -59)
+
+[node name="Node3D" parent="." instance=ExtResource("11_rv7mk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 26, -44)

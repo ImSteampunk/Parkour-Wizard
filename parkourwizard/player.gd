@@ -12,9 +12,9 @@ extends CharacterBody3D
 @export_range(0.0, 1.0) var mouse_sens:=.25
 
 @export_group("Movement")
-@export var move_speed := 20.0
+@export var move_speed := 30.0
 @export var acceleration := 10000
-@export var jump_impulse := 20
+@export var jump_impulse := 25
 
 #Doublejump
 var coyote_time := 5.0
@@ -33,7 +33,7 @@ var speed_lock := 0
 var locked_in_speed
 
 var _camera_input_direction := Vector2.ZERO
-var gravity := -30.0
+var gravity := -50.0
 
 # Texture
 var matwhite = preload("res://white.tres")
@@ -106,8 +106,8 @@ func _physics_process(delta: float) -> void:
 		lastmat = pill.get_surface_override_material(0)
 		
 	if Input.is_action_just_pressed("duck") and slide_time<=-30 and is_on_floor():
-		slide_time = 30
-		print ("words")
+		slide_time = 20
+		
 		
 	if slide_time >= 0:
 		if (was_sliding_last_frame == 0):
@@ -116,7 +116,7 @@ func _physics_process(delta: float) -> void:
 		pill_collision_slide.set_disabled(false)
 		speed_lock = 1.0
 		was_sliding_last_frame = 1
-		velocity = velocity.move_toward(locked_in_speed * (move_speed+slide_time), acceleration * delta)
+		velocity = velocity.move_toward(locked_in_speed * (move_speed+(3*slide_time)), acceleration * delta)
 		slide_time-=1
 		pill.visible = false
 		pill_slide.visible = true
@@ -186,6 +186,12 @@ func _physics_process(delta: float) -> void:
 	if is_descending == 1:
 		velocity.y=-50
 		pill.set_surface_override_material(0,matorange)
+		
+	if velocity.y<=-60:
+		pill.set_surface_override_material(0,matred)
+	
+	if Input.is_action_just_pressed("testbutton"):
+		velocity.y=100
 	
 	
 	move_and_slide()
